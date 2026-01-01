@@ -72,6 +72,73 @@ The **Shell** is a program that takes commands from the keyboard and gives them 
 3.   The Kernel executes it on the hardware.
 4.  The output is returned to your screen.
 
+# 02. Navigation & File System Basics
+
+Navigating the Linux file system via the terminal is the first skill you must master. Unlike a graphical interface where you "click" folders, here you "change directories".
+
+## 📍 1. Where am I? (`pwd`)
+**pwd** stands for **P**rint **W**orking **D**irectory. It tells you exactly where you are currently located in the file system tree.
+
+```bash
+$ pwd
+/home/username/Documents
+```
+
+---
+
+## 📂 2. What is here? (`ls`)
+**ls** is used to **L**i**s**t files and directories.
+
+### Basic Usage:
+```bash
+ls          # Lists files in current directory (simple view)
+```
+
+### Common Flags (Options):
+Flags modify how a command works.
+* **`ls -l`** : Long listing format. Shows permissions, owner, size, and date.
+* **`ls -a`** : All files. Shows hidden files (files starting with a dot `.`).
+* **`ls -la`**: Combines both (Detailed view + Hidden files).
+* **`ls -h`** : Human-readable sizes (e.g., shows 500M instead of 512000 bytes).
+
+```bash
+# Example output of 'ls -la'
+drwxr-xr-x  2 user user 4096 Jan 01 10:00 .
+drwxr-xr-x 20 user user 4096 Dec 31 23:59 ..
+-rw-r--r--  1 user user  220 Jan 01 10:00 .bashrc
+-rw-r--r--  1 user user  500 Jan 01 10:05 textfile.txt
+```
+
+---
+
+## 🚶 3. Moving Around (`cd`)
+**cd** stands for **C**hange **D**irectory. It is used to move from one folder to another.
+
+### Absolute vs. Relative Path:
+* **Absolute Path:** Starts from the root `/` (e.g., `cd /var/log`). Works from anywhere.
+* **Relative Path:** Starts from where you are right now (e.g., `cd Documents`).
+
+### Crucial Shortcuts:
+| Command | Description |
+| :--- | :--- |
+| `cd ~` | Go to your **Home** directory (e.g., `/home/username`). |
+| `cd /` | Go to the **Root** directory (the base of the system). |
+| `cd ..` | Go **Up** one level (to the parent directory). |
+| `cd -` | Go back to the **Previous** directory you were in. |
+
+### Examples:
+```bash
+cd Documents/Work   # Enter Documents then Work
+cd ..               # Go back to Documents
+cd ../..            # Go back two levels
+```
+
+---
+
+## 💡 Quick Tip: Tab Completion
+You don't need to type full folder names. Type the first few letters and press **TAB**.
+* If you type `cd Doc` and press **TAB**, it will autocomplete to `cd Documents/`.
+  
 ## 🤝 Contribution
 This is a personal reference, but contributions are welcome! If you spot an error or want to add a useful command shortcut:
 
