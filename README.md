@@ -13,6 +13,10 @@ Hacktivity-AR]
 * **Playlist Link:** [▶️ Click here to watch the full playlist](https://youtube.com/playlist?list=PLgCu8TiZE3OZcKIqypbqIU9pG4mZjKP5C&si=jUr8IX0DdC8MjIu7)
 
 > *Special thanks to the instructor for the great explanation.*
+
+> **💡 Note:**
+> While this content is inspired by the source above, it represents my **personal notes, practical experiments, and summarization**. It is not a direct copy-paste of the material but rather a documented effort to understand and apply the concepts in my own way.
+
 ## 🌟 Unlock the Power of the Terminal
 
 Mastering the Command Line is not just a skill; it's a gateway to understanding how computing truly works.
