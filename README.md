@@ -352,6 +352,156 @@ sudo apt update       # Update system (needs root rights)
 sudo reboot           # Restart the computer
 ```
 
+# 05. Text Processing & Editors
+
+In Linux, everything is a file. Being able to read, search, and edit text files directly from the terminal is an essential skill for any system administrator or developer.
+
+## 📖 1. Viewing Files
+You don't always need to "open" a file to see what's inside. You can stream the content to your screen.
+
+### `cat` (Concatenate)
+Used to display the **entire** content of a file at once. Good for small files.
+
+    cat filename.txt
+    cat -n filename.txt    # Show line numbers
+
+### `less` (Pager)
+Used for **large files**. It allows you to scroll through the file page by page without loading the whole thing into memory.
+
+    less big_log_file.log
+
+* **Navigation:** Use `Arrow Keys` to scroll, `q` to quit.
+
+### `head` & `tail`
+* **head**: Shows the **first** 10 lines of a file.
+* **tail**: Shows the **last** 10 lines of a file (very useful for checking recent logs).
+
+    head -n 5 file.txt     # Show first 5 lines
+    tail -n 20 error.log   # Show last 20 lines
+    tail -f error.log      # Follow mode (updates live as new lines are added)
+
+---
+
+## 🔍 2. Searching Text (`grep`)
+**grep** stands for **G**lobal **R**egular **E**xpression **P**rint. It searches for specific text inside files.
+
+**Syntax:** `grep "search_term" [file]`
+
+    grep "error" syslog.log          # Find lines containing "error"
+    grep -i "error" syslog.log       # Case insensitive (finds "Error", "ERROR", "error")
+    grep -r "config" /etc/           # Recursive search inside a folder
+
+### The Pipe Operator (`|`)
+You can combine commands using the pipe `|`. It takes the output of the first command and uses it as input for the second.
+
+    cat file.txt | grep "something"  # Read file AND THEN search in it
+    history | grep "git"             # Search your command history for "git"
+
+---
+
+## 📝 3. Text Editors (`nano`)
+While there are many editors (like `vim` or `emacs`), **nano** is the most beginner-friendly command-line text editor.
+
+### Basic Usage:
+To open or create a file:
+
+    nano filename.txt
+
+### Essential Shortcuts (Ctrl + Key):
+At the bottom of the screen, you will see a menu. The `^` symbol represents the **Ctrl** key.
+
+| Shortcut | Action |
+| :--- | :--- |
+| **Ctrl + O** | **Save** (Write Out) - Press Enter to confirm filename. |
+| **Ctrl + X** | **Exit** - Asks to save if modified (Press `Y` then Enter). |
+| **Ctrl + W** | **Search** (Where Is). |
+| **Ctrl + K** | **Cut** (Delete) current line. |
+| **Ctrl + U** | **Paste** (Uncut) the deleted line. |
+
+> **Note on Vim:** You might hear about **Vim**. It is powerful but has a steep learning curve. If you accidentally enter vim and get stuck, type `:q!` and hit Enter to exit without saving.
+
+# 06. User & Group Management
+
+Linux is designed to handle multiple users efficiently. As an administrator, you need to know how to manage user accounts and groups securely.
+
+## 📂 1. Important System Files
+Before typing commands, you should know where user information is stored.
+
+* **`/etc/passwd`**: Contains user account information (Name, ID, Home Directory, Shell).
+    * *Readable by everyone.*
+* **`/etc/shadow`**: Contains the encrypted passwords and expiration data.
+    * *Readable ONLY by root (for security).*
+* **`/etc/group`**: Defines the groups on the system and their members.
+
+To view users, you can simply read the passwd file:
+~~~bash
+cat /etc/passwd
+tail /etc/passwd   # See the most recently added users
+~~~
+
+---
+
+## 👤 2. Managing Users
+
+### Creating a User (`useradd`)
+We use `useradd` to create a user. We usually add the `-m` flag to create a **Home Directory** for them automatically.
+
+~~~bash
+sudo useradd -m username
+~~~
+> **Note:** On Debian/Ubuntu, there is a friendlier command called `adduser` which asks for details interactively, but `useradd` is the standard universal command.
+
+### Setting a Password (`passwd`)
+A new user cannot log in until they have a password.
+~~~bash
+sudo passwd username
+~~~
+
+### Deleting a User (`userdel`)
+To remove a user, use `userdel`.
+* **Important:** Use `-r` to remove their home directory and mail spool too.
+~~~bash
+sudo userdel -r username
+~~~
+
+---
+
+## 👥 3. Managing Groups
+Groups are used to organize users and manage permissions collectively (e.g., a "developers" group can write to a specific project folder).
+
+### Creating a Group
+~~~bash
+sudo groupadd developers
+~~~
+
+### Adding a User to a Group (`usermod`)
+This is one of the most common tasks (e.g., adding a user to the `sudo` group).
+* **`-a` (Append):** Vital! Adds the user to the new group *without* removing them from other groups.
+* **`-G` (Group):** Specifies the group name.
+
+~~~bash
+# Syntax: sudo usermod -aG [Group] [User]
+
+sudo usermod -aG developers ahmed   # Adds ahmed to developers
+sudo usermod -aG sudo ahmed         # Gives ahmed admin privileges (Ubuntu/Debian)
+sudo usermod -aG wheel ahmed        # Gives ahmed admin privileges (RedHat/Fedora)
+~~~
+
+---
+
+## 🆔 4. Checking User Info (`id`)
+To see your own UID (User ID), GID (Group ID), and which groups you belong to:
+
+~~~bash
+id
+# Output example: uid=1000(user) gid=1000(user) groups=1000(user),27(sudo)...
+~~~
+
+To check another user:
+~~~bash
+id username
+~~~
+
 ## 🤝 Contribution
 This is a personal reference, but contributions are welcome! If you spot an error or want to add a useful command shortcut:
 
