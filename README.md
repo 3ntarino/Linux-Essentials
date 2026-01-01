@@ -4,6 +4,15 @@
 ![Bash](https://img.shields.io/badge/Shell_Scripting-4EAA25?style=for-the-badge&logo=gnu-bash&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Active_Learning-blue)
 
+## 📺 References & Resources
+
+This repository documents my learning notes based on the **Linux Essentials** course/playlist. 
+
+* **Primary Source:** [linux Course In Arabic / 
+Hacktivity-AR]
+* **Playlist Link:** [▶️ Click here to watch the full playlist](https://youtube.com/playlist?list=PLgCu8TiZE3OZcKIqypbqIU9pG4mZjKP5C&si=jUr8IX0DdC8MjIu7)
+
+> *Special thanks to the instructor for the great explanation.*
 ## 🌟 Unlock the Power of the Terminal
 
 Mastering the Command Line is not just a skill; it's a gateway to understanding how computing truly works.
