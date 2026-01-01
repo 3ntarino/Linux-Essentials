@@ -30,20 +30,19 @@ The content is organized by topic to make navigation easy:
 
 You can use this repository as a cheat sheet. If you need to find how to use a specific command, simply navigate to the relevant folder or search the repository.
 
-🤝 Contribution
+## 🤝 Contribution
 This is a personal reference, but contributions are welcome! If you spot an error or want to add a useful command shortcut:
 
-Fork the repository.
+1. Fork the repository.
 
-Create a new branch (git checkout -b feature/NewTip).
+2. Create a new branch (git checkout -b feature/NewTip).
 
-Commit your changes.
+3. Commit your changes.
 
-Push to the branch and open a Pull Request.
+4. Push to the branch and open a Pull Request.
 
 📬 Contact
 If you have any questions, suggestions, or just want to connect, feel free to reach out:
 
 📧 Email: 3ntarino@gmail.com
 
-Created with ❤️ by a Linux Enthusiast.
