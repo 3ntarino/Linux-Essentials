@@ -138,7 +138,93 @@ cd ../..            # Go back two levels
 ## 💡 Quick Tip: Tab Completion
 You don't need to type full folder names. Type the first few letters and press **TAB**.
 * If you type `cd Doc` and press **TAB**, it will autocomplete to `cd Documents/`.
-  
+
+# 03. File Management
+
+Now that you know how to navigate, it's time to learn how to manipulate the files and directories themselves. This section covers creating, copying, moving, renaming, and deleting.
+
+## 🔨 1. Creating Files and Directories
+
+### `mkdir` (Make Directory)
+Used to create new folders.
+```bash
+mkdir my_folder
+mkdir -p project/src/assets  # Creates parent directories if they don't exist
+```
+
+### `touch` (Create Empty File)
+Originally used to update file timestamps, but commonly used to create an empty file quickly.
+```bash
+touch index.html
+touch file1.txt file2.txt file3.txt
+```
+
+---
+
+## 📋 2. Copying (`cp`)
+Used to copy files or directories from one location to another.
+
+**Syntax:** `cp [source] [destination]`
+
+### Copying Files:
+```bash
+cp file.txt backup_file.txt       # Make a copy in current dir
+cp file.txt /home/user/Documents/ # Copy to another folder
+```
+
+### Copying Directories (`-r`):
+To copy a folder, you MUST use the **Recursive** flag (`-r`).
+```bash
+cp -r folder1 folder_backup
+```
+
+---
+
+## 🚚 3. Moving & Renaming (`mv`)
+In Linux, **Moving** and **Renaming** are done with the same command: `mv`.
+
+### Moving a file:
+```bash
+mv file.txt Documents/   # Moves file.txt into Documents folder
+```
+
+### Renaming a file:
+If the destination is a filename (not a folder), it renames the file.
+```bash
+mv old_name.txt new_name.txt
+```
+
+---
+
+## 🗑️ 4. Deleting (`rm`)
+**⚠️ WARNING:** Deleting files in the terminal is permanent. There is no "Recycle Bin" or "Trash". Once it's gone, it's gone.
+
+### Removing Files:
+```bash
+rm file.txt
+rm -i file.txt   # Interactive mode (asks for confirmation before deleting)
+```
+
+### Removing Directories:
+To delete a folder and everything inside it, use `-r` (Recursive) and `-f` (Force - strictly for no confirmation).
+```bash
+rmdir empty_folder      # Only works if folder is empty
+rm -r my_folder         # Deletes folder and contents
+rm -rf my_folder        # FORCE delete (Dangerous! Use with caution)
+```
+
+## 📝 Summary Table
+
+| Task | Command | Example |
+| :--- | :--- | :--- |
+| **Create Folder** | `mkdir` | `mkdir images` |
+| **Create File** | `touch` | `touch style.css` |
+| **Copy File** | `cp` | `cp a.txt b.txt` |
+| **Copy Folder** | `cp -r` | `cp -r src dest` |
+| **Move/Rename** | `mv` | `mv old new` |
+| **Delete File** | `rm` | `rm junk.txt` |
+| **Delete Folder** | `rm -rf` | `rm -rf old_project` |
+
 ## 🤝 Contribution
 This is a personal reference, but contributions are welcome! If you spot an error or want to add a useful command shortcut:
 
