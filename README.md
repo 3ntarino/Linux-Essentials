@@ -502,6 +502,97 @@ To check another user:
 id username
 ~~~
 
+# 07. Bash Scripting Basics
+
+The true power of Linux lies in automation. A **Shell Script** is simply a text file containing a list of commands that the shell executes in order. Instead of typing commands one by one, you write them in a script and run it.
+
+## 📜 1. Your First Script
+To create a script, you make a file (usually ending in `.sh`), add a special line at the top, and then write your commands.
+
+**Step 1: Create the file**
+
+    nano hello.sh
+
+**Step 2: Add content**
+
+    #!/bin/bash
+    
+    # This is a comment
+    echo "Hello, World!"
+    echo "This is my first script running on Linux."
+
+### Understanding the Shebang (`#!`)
+The first line `#!/bin/bash` is called the **Shebang**. It tells the system which interpreter to use to run the script (in this case, Bash).
+
+---
+
+## 🏃 2. Executing the Script
+By default, new files are not executable for security reasons. You must give it permission first.
+
+**Step 1: Make it executable**
+
+    chmod +x hello.sh
+
+**Step 2: Run it**
+We use `./` to tell the shell "look in the current directory".
+
+    ./hello.sh
+
+---
+
+## 📦 3. Variables
+Variables allow you to store data and reuse it.
+* **Definition:** No spaces around the `=` sign.
+* **Usage:** Use `$` before the name to access the value.
+
+    #!/bin/bash
+    
+    NAME="Ahmed"
+    AGE=20
+    
+    echo "My name is $NAME and I am $AGE years old."
+
+---
+
+## 🔀 4. Conditional Statements (`if`)
+Scripts can make decisions using `if` statements.
+
+    #!/bin/bash
+    
+    echo "Enter your age:"
+    read user_age
+    
+    if [ $user_age -ge 18 ]; then
+        echo "You are an adult."
+    else
+        echo "You are a minor."
+    fi
+
+* `-ge` means "Greater than or Equal".
+* Other comparisons: `-eq` (Equal), `-lt` (Less than), `-ne` (Not Equal).
+
+---
+
+## 🔄 5. Loops
+Loops allow you to repeat a task multiple times.
+
+**Example: A simple loop to print numbers**
+
+    #!/bin/bash
+    
+    for i in {1..5}
+    do
+        echo "Number: $i"
+    done
+
+---
+
+## 🚀 Summary Checklist
+1. Create file with `.sh` extension.
+2. Start with `#!/bin/bash`.
+3. Make executable with `chmod +x script.sh`.
+4. Run with `./script.sh`.
+
 ## 🤝 Contribution
 This is a personal reference, but contributions are welcome! If you spot an error or want to add a useful command shortcut:
 
