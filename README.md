@@ -30,6 +30,34 @@ The content is organized by topic to make navigation easy:
 
 You can use this repository as a cheat sheet. If you need to find how to use a specific command, simply navigate to the relevant folder or search the repository.
 
+---
+
+## 📚 A Note on Documentation
+
+> **💡 Important Note:**
+> This repository is a **curated reference** of the most essential commands and flags used in daily tasks. It is **not** an exhaustive encyclopaedia of every single option available in Linux.
+
+If you want to dive deeper into any tool or command mentioned here, use the built-in **Manual** pages.
+
+### How to use `man`:
+To read the full documentation of any command, simply type `man` followed by the command name in your terminal.
+
+```bash
+man [command_name]
+```
+
+**Example:**
+```bash
+man ls      # Opens the manual for the 'ls' command
+```
+
+**Navigation Shortcuts:**
+* **Scroll:** Use the `Up` and `Down` arrow keys (or `Space` for a full page).
+* **Search:** Press `/`, type your search term, and hit Enter.
+* **Exit:** Press `q` to quit the manual and go back to the terminal.
+
+---
+
 # 01. Introduction to Linux
 
 Before diving into commands, it is crucial to understand what Linux is, where it came from, and how we interact with it.
