@@ -266,6 +266,92 @@ rm -rf my_folder        # FORCE delete (Dangerous! Use with caution)
 | **Delete File** | `rm` | `rm junk.txt` |
 | **Delete Folder** | `rm -rf` | `rm -rf old_project` |
 
+# 04. Linux Permissions & Ownership
+
+Linux is a multi-user system, meaning multiple users can access the system simultaneously. To keep things secure, every file and directory has a set of **Permissions** and an **Owner**.
+
+## 🔐 1. Understanding Permissions (`ls -l`)
+When you run `ls -l`, you see a string like `-rwxr-xr--`. Let's break it down.
+
+Structure: `[Type][Owner][Group][Others]`
+
+| Symbol | Meaning | Value (Octal) | Description |
+| :--- | :--- | :--- | :--- |
+| **r** | **Read** | 4 | Can open and read the file / List directory contents. |
+| **w** | **Write** | 2 | Can modify or delete the file / Create files in directory. |
+| **x** | **Execute** | 1 | Can run the file as a program / Enter the directory (`cd`). |
+| **-** | **No Access** | 0 | No permission granted. |
+
+### Example Breakdown:
+`drwxr-xr--`
+1. **`d`**: It is a Directory (if `-` it is a file).
+2. **`rwx` (Owner)**: The user who owns it can Read, Write, and Execute.
+3. **`r-x` (Group)**: The group members can Read and Execute, but NOT Write.
+4. **`r--` (Others)**: Everyone else can only Read.
+
+---
+
+## 🛡️ 2. Changing Permissions (`chmod`)
+**chmod** stands for **Ch**ange **Mod**e. There are two ways to use it:
+
+### Method A: Numeric Mode (The 4-2-1 Rule)
+This method is based on **Binary Representation**. Think of permissions as 3 bits (On/Off):
+
+| Permission | Binary | Decimal Value |
+| :--- | :--- | :--- |
+| **r** - - | `100` | **4** |
+| - **w** - | `010` | **2** |
+| - - **x** | `001` | **1** |
+
+You simply sum up the numbers for the permissions you want:
+* **7** (Full Access) = 4 + 2 + 1 (`rwx`)
+* **5** (Read & Exec) = 4 + 0 + 1 (`r-x`)
+* **6** (Read & Write) = 4 + 2 + 0 (`rw-`)
+
+**Examples:**
+```bash
+chmod 777 script.sh   # Everyone can do everything (Dangerous!)
+chmod 755 script.sh   # Owner(7), Group(5), Others(5) -> Standard for programs
+chmod 644 file.txt    # Owner(rw), Group(r), Others(r) -> Standard for text files
+chmod 400 key.pem     # Owner(r) only -> Very secure
+```
+
+### Method B: Symbolic Mode
+Use letters to add (`+`) or remove (`-`) permissions.
+* **u** (User/Owner), **g** (Group), **o** (Others), **a** (All)
+
+```bash
+chmod +x script.sh    # Make file executable for everyone
+chmod u+w file.txt    # Add write permission for the User (Owner)
+chmod o-r secret.txt  # Remove read permission for Others
+```
+
+---
+
+## 👤 3. Changing Ownership (`chown`)
+**chown** stands for **Ch**ange **Own**er. Only the root user (using `sudo`) can usually change ownership of files that don't belong to them.
+
+**Syntax:** `sudo chown [user]:[group] [file]`
+
+```bash
+sudo chown ahmed file.txt          # Change owner to 'ahmed'
+sudo chown ahmed:developers file.txt # Change owner to 'ahmed' and group to 'developers'
+sudo chown -R ahmed /var/www/html  # Recursive (Apply to folder and everything inside)
+```
+
+---
+
+## ⚡ 4. The Superuser (`sudo`)
+**sudo** stands for **S**uper**U**ser **DO**. It gives you administrator (root) privileges for a single command.
+
+* **Never log in as root directly.** Use `sudo` instead.
+* It will ask for *your* password, not the root password.
+
+```bash
+sudo apt update       # Update system (needs root rights)
+sudo reboot           # Restart the computer
+```
+
 ## 🤝 Contribution
 This is a personal reference, but contributions are welcome! If you spot an error or want to add a useful command shortcut:
 
